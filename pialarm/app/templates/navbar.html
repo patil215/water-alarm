@@ -1,0 +1,43 @@
+<%doc>
+Any page that employs the navbar should have the controller pass a list of
+dictionaries to the template to help with navbar construction:
+
+[{
+  "text" : "Home"
+  "url" : "/"
+  "active" : True
+}, ... ]
+
+This list should be passed in the `navbar` variable
+</%doc>
+
+<div class="container">
+  <div class="navbar navbar-default" role="navigation">
+    <div class="navbar-header">
+        % for element in navbar:
+          % if element['active'] is True:
+            <span class="navbar-brand alarm-brand visible-xs">${element['title']}</span>
+          % endif
+        % endfor
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav nav-justified">
+        % for element in navbar:
+          % if element['active'] is True:
+            <li class="active">
+          % else:
+            <li>
+          % endif
+              <a href="${element['url']}">${element['title']}</a>
+            </li>
+        % endfor
+      </ul>
+    </div>
+  </div>
+</div>
