@@ -49,6 +49,7 @@ class Scheduler(object):
         self.cron.remove_all(comment="ON for %s" % weekday)
         self.cron.remove_all(comment="OFF for %s" % weekday)
 
+
         # -- Second, create new jobs
         current_dir = os.path.abspath(\
                 os.path.dirname(os.path.realpath(__file__)) )
@@ -58,7 +59,7 @@ class Scheduler(object):
                 comment = "OFF for %s" % weekday)
 
         # -- Third, calculate the alarm times
-        alarm_time = datetime.datetime(2014, 1, 1, int(hour), int(minute))
+        alarm_time = datetime.datetime(2017, 1, 1, int(hour), int(minute))
         duration = app.config['ALARM_DURATION']
         on_time = alarm_time.strftime("%H:%M")
         off_time = (alarm_time + \
@@ -66,6 +67,7 @@ class Scheduler(object):
 
         on_hour, on_minute = on_time.split(':')
         off_hour, off_minute = off_time.split(':')
+
 
         # -- Finally, add the new job to the crontab
         on_job.minute.on(on_minute)
@@ -75,6 +77,7 @@ class Scheduler(object):
         off_job.minute.on(off_minute)
         off_job.hour.on(off_hour)
         off_job.dow.on(weekday)
+
 
         self.cron.write()
 
