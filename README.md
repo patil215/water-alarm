@@ -7,6 +7,6 @@ The alarm is configured through a web interface.
 
 ## Setup
 1. Git clone
-2. ```./pi_alarm/script/setup.sh```
+2. ```./script/setup.sh```
 3. ```sudo ./run.py```
 4. Configure server to run on boot (instructions [here](http://www.stuffaboutcode.com/2012/06/raspberry-pi-run-program-at-start-up.html)).
