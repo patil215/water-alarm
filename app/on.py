@@ -18,12 +18,9 @@ def main():
     pwm = GPIO.PWM(17, 100)
     pwm.start(5)
 
-
-    for i in range(0, 10):
-        setServo(pwm, onAngle)
-        time.sleep(1)
-        setServo(pwm, offAngle)
-        time.sleep(1)
+    setServo(pwm, onAngle)
+    time.sleep(5)
+    setServo(pwm, offAngle)
 
 if __name__ == "__main__":
 	main()

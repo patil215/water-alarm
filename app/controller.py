@@ -49,7 +49,7 @@ def set_alarm():
     scheduler.schedule_alarm(weekday, hour, minute)
 
     day = get_current_day_name()
-    flash("Alarm for %s set!" % day, "message")
+    flash("Set alarm for %s" % day, "message")
     return redirect(('/' + day).lower())
 
 def render_day(day):
@@ -169,6 +169,5 @@ def get_navbar_template():
 # -- Light Control Routes
 @app.route('/on')
 def alarm_on():
-    #light_driver.on()
     print "this should turn things on..."
     return redirect(('/' + get_current_day_name()).lower())

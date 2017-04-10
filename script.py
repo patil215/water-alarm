@@ -18,6 +18,3 @@ while True:
     time.sleep(1)
     setServo(pwm, offAngle)
     time.sleep(1)
-
-
-
