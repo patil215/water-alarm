@@ -5,7 +5,6 @@ import random
 
 from app import app
 from flask import flash, redirect, get_flashed_messages, request
-from light_driver import LightDriver
 from mako.lookup import TemplateLookup
 from scheduler import Scheduler
 
@@ -31,7 +30,6 @@ def render(templatename, **kwargs):
 # -- Global Variables
 current_day = datetime.date.today() + datetime.timedelta(days=1)
 
-light_driver = LightDriver()
 scheduler = Scheduler()
 
 # -- Routes
@@ -170,21 +168,7 @@ def get_navbar_template():
 
 # -- Light Control Routes
 @app.route('/on')
-def turn_light_on():
-    light_driver.on()
-    return redirect(('/' + get_current_day_name()).lower())
-
-@app.route('/off')
-def turn_light_off():
-    light_driver.off()
-    return redirect(('/' + get_current_day_name()).lower())
-
-@app.route('/troll')
-def troll_katie():
-    from time import sleep
-    for i in range(5):
-        turn_light_on()
-        sleep(0.13)
-        turn_light_off()
-        sleep(0.13)
+def alarm_on():
+    #light_driver.on()
+    print "this should turn things on..."
     return redirect(('/' + get_current_day_name()).lower())

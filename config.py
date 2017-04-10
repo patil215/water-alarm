@@ -14,5 +14,5 @@ BASIC_AUTH_PASSWORD = 'password'
 
 # -- Custom Happy Messages
 MESSAGES = [
-    "Wat"
+    "Water alarm clock created by Neil Patil."
 ]
