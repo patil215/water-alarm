@@ -1,7 +1,9 @@
 # Water Alarm Clock
-This project takes a Raspberry Pi and, web-enabling it, turns it into a water alarm
-clock. The Pi is attached to a Peristaltic pump connected to a water reservoir, which
-dumps water on my face from my ceiling for a period of 5 seconds to wake me up.
+
+Getting up for a 10 am this semester has been rough. I missed Linear Algebra one too many times, and this was the solution.
+
+This project turns a Raspberry Pi into a water alarm clock. The Pi is attached to a Peristaltic pump connected to a water reservoir, which
+dumps water on my face from my ceiling for a period of five seconds to wake me up.
 
 The alarm is configured through a web interface.
 
