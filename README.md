@@ -1,11 +1,43 @@
 # Water Alarm Clock
 
-Getting up for a 10 am this semester has been rough. I missed Linear Algebra one too many times, and this was the solution.
+I kept missing Linear Algebra this semester (10 AMs are rough) so I decided to go to extreme measures. I built an alarm clock that dumps water on my head to wake me up.
 
-This project turns a Raspberry Pi into a water alarm clock. The Pi is attached to a Peristaltic pump connected to a water reservoir, which
-dumps water on my face from my ceiling for a period of five seconds to wake me up.
+The project consists of an internet-connected Raspberry Pi connected to a peristaltic water pump. The two components are mounted on the wall next to my bed. A water container sits under my bed, and a pipe runs up through the peristaltic pump up to the ceiling, right above my bed.
 
-The alarm is configured through a web interface.
+I can set an alarm by connecting to a webapp running on the Raspberry Pi. The webapp uses a recurring weekly cron job, as well as the GPIO library, to turn on the peristaltic motor at the scheduled time. As the motor rotates, it pumps water through the pipes, eventually falling onto my head.
+
+I can SSH into the Pi at any time to manually manage the webapp or run the water alarm.
+
+Here is a video of the alarm clock in action:
+
+[![Water Alarm Video](https://lh3.googleusercontent.com/eUkuu3cSQe_tqOPwstVjFUn4lF6bw_HSdB6td2nMo6mNY7HeSNUV_3qfGYPv-H-pQDiaBu_q3uL4zLSiNcVAcrPSGy6NJzUcy6Sm7SKP0mgmTRtc6n-7hfe4siqZmn7eVuzus4iz91zyOI5PDNNpBc3m26m4BMfNGakuXyzdLcryJllpJn-j8hD34oZ8xLrbxQtm-gvubLBNXyMoNxMTrudqKvYlw4ZTukYlsscYAFWrBK6dKk-9AcPZiHyaowcnWGmMCGfLg-KGS6vEoRBKkVFvqeOEkyGm-QTbdvMdxqt3BJD6zyewp7xOV5T8kEKGAkI6MaiaaTSuKcVja1OiMpkU42G4qA9EhgTkiU3Tj1ChHbTcthxZSM75CxX07jCkZfQue-_TXXEKmhJMdGxw-7FF2u5oURc8Fc57qPWYoBR-QrAtc_qXeN3Blw-ZoUl-azCTu5RKxuSxxBlGUr-k9eHPpP5PHIm7uJ4ANjw_WKxULrHQELA3vtAFaB1tW02194N5y2RC4IF1tWIBpqqooISsQLKcH_K_IvP3hJmgIZZxtLBvg9MEccmtZvo0AyMZvT0Itl1TvzIjY_b6coCP_d5016prO-_pOKvehc7Rw5IxK0uifmqhlA=w1922-h1082-no)](https://vimeo.com/214351737)
+
+
+The webapp I built to configure the alarm:
+
+![webapp](https://lh3.googleusercontent.com/S0VZ2WsbQRKSbcJmLZgg6N7pK5PXsthvH8T5YKhqHr2aaWY_Lhh0i_mLXVi8espZjPY3l9hiiq0t5oZQmb6Ksb3e4sg-ct28wAYUmcnRIgkBIkUvCZyELJxcH42AzXLSBPJBEa45thuvbZULI7IDsR7T4zyC00Y9wUZr8nwO7hdNU5ZVTvsYugYcjvP8sD0G8AyEFfaq3TbbYhl5AGrFr2WzeNAdCKu-9RYumyjRRER_pKZoo8vQ9lh25Hkp-WhEd_JT8T6SqPqrrtZHlDxc9SVyZjloGhLowdFwH9NZd9Fc9to8pPdBkKq_Qr1e-MMr4TIfu8kT1mB0w4xAg1marfUfcE9VtYqL8MxSioX-RbaL057wuS6Lm8ZM8AQoIkaYDuOWyTdujz7NNWLLwInX70WHUqLcyJ19MyYA0bf9fdHS-IzhyISTrZvg7eGRhQHE8QHJDwSR7Iq1AOHaO-4o0qFVna-zfCxDt-BjdMgfF7o-z6hg7GuflyV0RCeUsZIQF4bF_umOgEy4qHl-GAlXYg5UjJvkDIpbKT86E7A6TXjjW2BViY91-lx0zgxeQ4339SWZOyy2ODV4D1lUoF30tOyUoKgIueUOA4GN2jO7_ndwWs5Truunmw=w2630-h1556-no)
+
+
+The entire thing as viewed from my bed:
+
+![project](https://lh3.googleusercontent.com/2wsantYeO8gwt7rlOwsm9zqjFLCz0kPsZjLYN2eRftlJ1ABbmfcDne2moasCKMU38LqRtbTW0JFBRd6k5kpW-aMNB5-ICITfugqyOurtqdeMl0lQlsDVkjByqU68MGauzzX8icWku8Azag767rtSHLsjbz_nbQ_DRwvSk8mj_A4GlxzYH16n3kFzQ-6IUhD6XlL6dEx_1Zbv7hL-Gbq-C4QnNtJcvR39i9-snPRIumk8Gm-y-AO-B7o-BnoZCZ7I__zxn7yy17As0jqDzEZHvZV8aFjFo4D8lvdCIwafTNz1ebDeRH6T1SWDsHj15ZeySFC2ytxMtd8iRuILiCBpgZBlBABc7OzV66PGHmGgfjnt63-0lJQ0J61IZsQZuf6xT3oBU3jnLvegXYQh9BbxkCS0mU5sERHWm1Xyw62v3mua1dwIF5L6DsZ8c4auYQUIwLhqzslnuxT9R_g6_dOwdmd55Gtf_-qG3veIqSbSJEQ8QtcDieKWYi0Gz4Mwd_LJe2R1PuLoVQvjr2-iFETUsjLqTVHcuXzFedKq3aXE9WdOER3V1xMg4c2ZpQ-Wz-7sm9p9y49sCPku5U0X_LU_NW2crbvjkwNmNw1V98QYQWQ_Oyi9rw=w2768-h1556-no)
+
+
+The water reservoir under my bed from which the water is pumped from. I can go about a month before needing to refill the bottle:
+
+![water](https://lh3.googleusercontent.com/tZPnp2AFJKJ8fyObQ13Y7IO5C_aNcdguLzIoEKUKydBnCBcnRC1Hjt6pjkcyHJWo2w0umgDLtK2PMsil6K_0RmMQT-eAfIakxQ0GYFbnhdFseCBq4ejI_GVm3yTQw5KoKrVOnyB_oTJ2JDx7WAeclcpCS9ZVvzqtZoNYRABoWWl2BrVlfUJf0SutU8l-44V_iO4H_1sC4v4EDLRVcCTTPiMr3yPTPu_peZk7ahXcIOyafBAftYo06Umj92GYytPYk2ylaTwnGLc2Kidq86xfuBqrgH_J9SUmdi7ixXSF5FP2CxZkHJHqDVJcql_B_PjGtRE5MZU8kAhsGKHKt6l1o5aOLfDA9it0y6cZNv5oxgJWZNJTwK-oFehsNDJJUX1ghVkWSlcJsj9v31ckY2Psi4ySzQRNFyfGD0P4uHI5AaZE8hP4KfB7KNXhuUUuqvdQXNuyDVCzeZKW2x5BkLOLBuYVS-LrUp2fEJxdI_BHPtWLTohgT_GouDZKAKR5cHPktXyBCcDYq8MDwMcQn-nEuf0J4o5Hd386bEKQXq9nZS4a0G_Vimz9hKvr4I-sUv7aWsMUciSkv3FNykDe0_U1ljPPv7hpgYU9sg8qpfFmW_gfrC1DiQ3hrQ=w2768-h1556-no)
+
+
+The Raspberry Pi and peristaltic pump mounted on the wall. Note the small clear pipe coming into and out of the motor. (The small servo also present on the breadboard is used as a mechanical "transistor" in order to step up the voltage for the motor (I didn't have a transistor or relay readily available)):
+
+![pi](https://lh3.googleusercontent.com/oq41BtB3o4QcidJuOdI1gdfbt58CAzBiJTsZmv7Y0uwkYKTUSkI64uwtEptFq3BzS1SV_wUhr8UQAORSKFzysi2r9MyvaDDy9_u41elzpjvGlNfEMbQVC-Fr5ygAwFPCyWxLdV2GER9GT_tl4Ol4l8091s-P4LeOmggEDbKnKlEtCe1T5k3WyRyANl604ViU-4ksEpgp0py4WEVfUzi7YNAJ1r9BIcHID2r5FOjkDi2A_A_bXJ5R1JwCURUa1vP4NyeCF2Qn4cncI8SdMPWI6D2dU7rL1pvhKQX9sf2kXgb4TiXZ9QFdb-AzFJbdJBq0fe5Xr4yl49M7A5jdk6eCY42zzRib5NzGYRJkTMARaTgYPnWho2CjsJuxYg67wkVMeakanXAktO-5F9-g0p8tWrZCEyNQKOSMuWa_c8cDSw8Y-ZbLUvy2w0NXr5eB72YA1xL8prbG23j5RX8dAKtL-ly7Aul2qizcpMK8J3vK_ngFaJEErX00ceZH19nLIETsj1sP8UBihATgVt8CiStY0LZH2F6iFu4TbQr1UkBIBOqouIESyk6id_Sd93PdtZNW_nf5d8_TQGKP_nTrfZ5p77Pa7LZC1K67SFPJ4RANF8xUAKm24YSw9A=w2768-h1556-no)
+
+
+The pipe that hangs over me to wake me up. The water is dumped for about 5 seconds, and the initial pouring is unpleasant enough to leave me wide awake. Thankfully, the water dries up from my bed after about 30 minutes:
+
+![pipe](https://lh3.googleusercontent.com/y60sgV_xsZLKJYf9as-6ov_keBa13ADQJaz3Qu9xJm3VcBa_9IATMQUn8-vBafo9lVKAfzYzIxsyWOTTm_U5oc9O0NKC8GXOmyWa9O_YpfILdRrW5WbJiz-ja_V4f_wKYGKPq2A7a2ruZgQ04DAxKtvWPnckgUyeyMXRN8xaXx8Oz-p8mzHrVxfwxaG1tHfX6-EDcUxYLDnMb0lb7ji7Y8ABRqxVfjg-nCl6rebrjbnDHLO__Orxj3uSg8cknxC0PrmL9Fmb_wgoiuQ7TnR2vjKR7LVBG3FYGUJiBjKmvUr0XesBHv7kCMh1rEHWC5ZreWDDr6rflQJxKpmjIXT67c7QOH-itjEFj2AlkhynxZ2yXzYLmN0k-aTqOEGn6gNhJfS31iXAyrJhjz4FwUf30Y0EW7hLlf2_n74FKA2wK2f68v6AoLq16082mm-gWm37cY_00OSHmwuLX4BHJFQtSSXJF5_bV5ZcLLam7BSy7rQY8QJESxOWpUcBkWI7GI2sbEhq3KOKAa0dQc10mMIGpTUmuFcIKzBE864OfW7IdTOl2W12AnBLuTmARZvePDjkvB2pM4g1d_ey56-sKhW8DplzsuLvw1rXEykXRjVmfsfuh4a8gvEZ_A=w2768-h1556-no)
+
+
 
 ## Setup
 1. Git clone
