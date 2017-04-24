@@ -11,4 +11,5 @@ The alarm is configured through a web interface.
 1. Git clone
 2. ```./script/setup.sh```
 3. ```sudo ./run.py```
-4. Configure server to run on boot (instructions [here](http://www.stuffaboutcode.com/2012/06/raspberry-pi-run-program-at-start-up.html)).
+4. Modify ```config.py``` and change username/password.
+5. Configure server to run on boot (instructions [here](http://www.stuffaboutcode.com/2012/06/raspberry-pi-run-program-at-start-up.html)).

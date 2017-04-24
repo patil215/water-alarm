@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-from light_driver import LightDriver
 
 from RPi import GPIO
 import time
@@ -11,7 +10,7 @@ def setServo(pwm, angle):
 
 def main():
     onAngle = 72
-    offAngle = 90
+    offAngle = 100
 
     GPIO.setmode(GPIO.BCM)
     GPIO.setup(17, GPIO.OUT)
@@ -19,8 +18,9 @@ def main():
     pwm.start(5)
 
     setServo(pwm, onAngle)
-    time.sleep(5)
+    time.sleep(10)
     setServo(pwm, offAngle)
+    time.sleep(2)
 
 if __name__ == "__main__":
 	main()

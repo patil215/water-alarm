@@ -8,11 +8,12 @@ ALARM_DURATION = 1            # Motor duration in minutes
 # -- General Config
 DEBUG = True
 CSRF_ENABLED = True
-BASIC_AUTH_FORCE = False
-BASIC_AUTH_USERNAME = 'alarm'
-BASIC_AUTH_PASSWORD = 'password'
+BASIC_AUTH_FORCE = True
+BASIC_AUTH_USERNAME = 'patil215'
+BASIC_AUTH_PASSWORD = 'default'
 
 # -- Custom Happy Messages
 MESSAGES = [
     "Water alarm clock created by Neil Patil."
 ]
+
